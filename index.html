@@ -412,23 +412,17 @@ long-horizon robotic tasks.
     <!-- Methodology. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            Video-o3 is designed to solve the challenges of attention dispersion and contextual efficiency in long-video processing. The framework operates on a Think-and-Tool cycle. The model generates structured directives containing temporal windows and visual token quotas. It dynamically invokes the VideoCrop tool to inspect target segments with adaptive spatiotemporal resolution.
-          </p>
-        </div>
         <div class="content has-text-centered">
           <img src="static/images/method.png" alt="Architectural Overview" width="100%"/>
           <p style="text-align: center; font-style: italic;">Architectural Overview. Video-o3 dynamically executes tool invocations based on previous reasoning to scrutinize specific clue segments. The Vision Encoder uses adaptive flexible sampling, while the LLM Decoder manages the interleaved "Think," "Tool," and "Answer" tokens.</p>
         </div>
         <div class="content has-text-justified">
           <p>
-            <b>Core Technical Innovations:</b>
+          The upper panel illustrates the main process of our proposed Thinking-with-Image framework. Language instructions and visual
+observations are encoded into a shared VLM, enabling interleaved reasoning and dynamic zoom-in perception before action generation.
+The lower panel presents the two-stage training strategy: (1) SFT cold-start to activate structured reasoning and tool-use behaviors, and (2)
+GRPO-based reinforcement learning to align multimodal reasoning–action trajectories with task-level objectives under sparse rewards.  
           </p>
-          <ul>
-            <li><b>Task-Decoupled Attention Masking:</b> To prevent attention dispersion, TDAM isolates per-step concentration. During clue seeking, the model attends only to the global context; during answering, it focuses on high-resolution tool observations.</li>
-            <li><b>Verifiable Trajectory-Guided Reward:</b> To control context length and cost, we introduce a reward mechanism that balances exploration coverage with reasoning efficiency, encouraging the model to terminate precisely when evidence is sufficient.</li>
-          </ul>
         </div>
       </div>
     </div>
